@@ -11,7 +11,7 @@ public class Customer {
 	@Id
 	private String customerId;
 	private String customerName;
-	//private List<Address> addresses;
+	private List<Address> addresses;
 	
 	public String getCustomerId() {
 		return customerId;
@@ -25,12 +25,12 @@ public class Customer {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	/*public List<Address> getAddresses() {
+	public List<Address> getAddresses() {
 		return addresses;
 	}
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
-	}*/
+	}
 	
 	
 

@@ -34,6 +34,11 @@ public class CustomerRepository {
 		customer.setCustomerName(customerName);
 		return customer;
 	}
+
+	public String saveCustomer(Customer customer) {
+		mongoTemplate.save(customer, "customer");
+		return "customer added successfully";
+	}
 	
 	
 

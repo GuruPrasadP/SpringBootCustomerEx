@@ -18,4 +18,9 @@ public class CustomerService {
 		return customerRepository.retrieveCustomers();
 	}
 
+	public String addCustomer(Customer customer) {
+		
+		return customerRepository.saveCustomer(customer);
+	}
+
 }
