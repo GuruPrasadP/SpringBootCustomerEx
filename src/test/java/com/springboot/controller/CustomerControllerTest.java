@@ -48,7 +48,7 @@ public class CustomerControllerTest {
 	
 	@Test
 	public void shouldGetAllCustomersDetails() throws Exception {
-		List<Customer> input = Lists.newArrayList(new CustomerBuilder().build());
+		List<Customer> input = Lists.newArrayList(new CustomerBuilder().addAddress().done().build());
 		when(customerService.getCustomers()).thenReturn(input);
 		MockHttpServletResponse response = mockMvc.perform(post("/customers"))
 				.andExpect(status().isOk())

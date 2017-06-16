@@ -20,12 +20,13 @@ public class CustomerBuilder implements Builder<Customer>{
 		Customer customer = new Customer();
 		customer.setCustomerId(customerId);
 		customer.setCustomerName(customerName);
-		/*List<Address> addresses = this.addresses.stream()
-												.collect(Collectors.toList());*/
-		List<Address> addresses = Lists.newArrayList();
-		this.addresses.forEach(addr -> addresses.add(addr.build()));
+		List<Address> addresses1 = this.addresses.stream()
+												.map(addr -> addr.build())
+												.collect(Collectors.toList());
+		/*List<Address> addresses = Lists.newArrayList();
+		this.addresses.forEach(addr -> addresses.add(addr.build()));*/
 		
-		customer.setAddresses(addresses);
+		customer.setAddresses(addresses1);
 		return customer;
 	}
 	
@@ -44,5 +45,5 @@ public class CustomerBuilder implements Builder<Customer>{
 		this.customerName = customerName;
 		return this;
 	}
-
+	
 }
