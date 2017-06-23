@@ -12,18 +12,22 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 import java.util.List
 
+import com.springboot.builder.AddressBuilder
+import com.springboot.builder.CustomerBuilder
 import com.springboot.domain.Customer
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource
 
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@Import(IntegrationTestConfiguration)
+@TestPropertySource("/testapplication.properties")
 //@Ignore
 class CustomerControllerSpec extends Specification {
     
     @Autowired
     TestRestTemplate restTemplate;
     
+	//@Ignore
      def 'should return customers'() {
         when:
         ResponseEntity<List<Customer>> response = restTemplate.getForEntity('/customers', List.class);
@@ -35,7 +39,18 @@ class CustomerControllerSpec extends Specification {
 		for(Customer customer in customers) {
 			customer.getCustomerId() != null;
 		}
+    }
+	
+	def 'add customer'() {
+		given :
+		Customer customer = new CustomerBuilder()
+								.addAddress().done().build();
+		when:
+		ResponseEntity<String> response = restTemplate.postForEntity("/addcustomer", customer, String.class);
 		
+		then:
+		response.statusCode == HttpStatus.OK;
+		response.body == "customer added successfully"
     }
-    
-    }
+	
+}
