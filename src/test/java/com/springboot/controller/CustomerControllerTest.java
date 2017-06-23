@@ -3,6 +3,7 @@ package com.springboot.controller;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,7 +43,7 @@ public class CustomerControllerTest {
 	
 	@Test
 	public void shouldReturnHttpStatusNotFoundWhenCustomerDetailsAreEmpty() throws Exception {
-		mockMvc.perform(post("/customers"))
+		mockMvc.perform(get("/customers"))
 				.andExpect(status().isNotFound());
 	}
 	
@@ -50,7 +51,7 @@ public class CustomerControllerTest {
 	public void shouldGetAllCustomersDetails() throws Exception {
 		List<Customer> input = Lists.newArrayList(new CustomerBuilder().addAddress().done().build());
 		when(customerService.getCustomers()).thenReturn(input);
-		MockHttpServletResponse response = mockMvc.perform(post("/customers"))
+		MockHttpServletResponse response = mockMvc.perform(get("/customers"))
 				.andExpect(status().isOk())
 				.andReturn().getResponse();
 		assertNotNull(response);

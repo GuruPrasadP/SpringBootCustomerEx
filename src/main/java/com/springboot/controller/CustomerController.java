@@ -20,7 +20,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@RequestMapping(value = "/customers", method = RequestMethod.POST)
+	@RequestMapping(value = "/customers", method = RequestMethod.GET)
 	public ResponseEntity<?> getCustomers(){
 		List<Customer> customers = customerService.getCustomers();
 		if(CollectionUtils.isEmpty(customers)) {
