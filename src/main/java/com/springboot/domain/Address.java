@@ -15,7 +15,7 @@ public class Address {
 	private String country;
 	private String zipcode;
 
-	/*public String getStreetLine1() {
+/*	public String getStreetLine1() {
 		return streetLine1;
 	}
 	public void setStreetLine1(String streetLine1) {

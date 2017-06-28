@@ -21,13 +21,12 @@ import org.springframework.test.context.TestPropertySource
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @TestPropertySource("/testapplication.properties")
-//@Ignore
+@Ignore
 class CustomerControllerSpec extends Specification {
     
     @Autowired
     TestRestTemplate restTemplate;
     
-	//@Ignore
      def 'should return customers'() {
         when:
         ResponseEntity<List<Customer>> response = restTemplate.getForEntity('/customers', List.class);
